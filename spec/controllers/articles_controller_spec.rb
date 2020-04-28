@@ -10,9 +10,19 @@ describe ArticlesController do
       create_list :article, 2
       get :index
       json = JSON.parse(response.body)
-      pp json # pp use to print json in console
-      #json_data = json[:data]
-      #expect(json_data.length).to eq(2)
+      #pp json # pp use to print json in console
+      json_data = json['data']
+      expect(json_data.length).to eq(2)
+      expect(json_data[0]['attributes']).to eq({
+        "title" => "My article title 1",
+        "content" => "My content article 1",
+        "slug" => "my-article-title-1"
+      })
+      expect(json_data[1]['attributes']).to eq({
+        "title" => "My article title 2",
+        "content" => "My content article 2",
+        "slug" => "my-article-title-2"
+      })
     end
   end
 end

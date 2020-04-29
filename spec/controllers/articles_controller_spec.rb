@@ -10,10 +10,10 @@ describe ArticlesController do
     end
 
     it 'should return proper JSON' do
-      articles = create_list :article, 2
+      create_list :article, 2
       subject
       #pp json # pp use to print json in console
-      articles.each_with_index do |article, index|
+      Article.recent.each_with_index do |article, index|
         expect(json_data[index]['attributes']).to eq({
           "title" => article.title,
           "content" => article.content,

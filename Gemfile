@@ -9,6 +9,8 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
+# OctoKit for Authentication with Github API
+gem "octokit", "~> 4.0"
 # JSON API error handler
 gem 'jsonapi_errors_handler'
 # Pagination

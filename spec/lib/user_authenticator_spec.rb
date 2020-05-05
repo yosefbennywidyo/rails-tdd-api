@@ -33,7 +33,7 @@ RSpec.describe UserAuthenticator do
           name: "Yosef Benny Widyokarsono"
         }
       end
-      
+
       before do
         allow_any_instance_of(Octokit::Client).to receive(
           :exchange_code_for_token).and_return('validaccesstoken')
@@ -44,6 +44,7 @@ RSpec.describe UserAuthenticator do
 
       it 'should save the user when does not exist' do
         expect{ subject }.to change{ User.count }.by(1)
+        expect(User.last.name).to eq('Yosef Benny Widyokarsono')
       end
     end
   end

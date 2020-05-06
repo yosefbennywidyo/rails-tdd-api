@@ -1,12 +1,9 @@
 class AccessTokensController < ApplicationController
+  rescue_from UserAuthenticator::AuthenticationError, with: :authentication_error
+
   def create
     authenticator = UserAuthenticator.new(params[:code])
-
-    begin
-      authenticator.perform
-    rescue UserAuthenticator::AuthenticationError
-      authentication_error
-    end
+    authenticator.perform
   end
 
   private
@@ -18,6 +15,6 @@ class AccessTokensController < ApplicationController
       "title" =>  "Authentication code is invalid",
       "detail" => "Yout must provide valid code in order to exchange it for token"
     }
-    render json: {}, status: 401
+    render json: { "errors": [ error ] }, status: 401
   end
 end

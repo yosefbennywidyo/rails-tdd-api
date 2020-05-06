@@ -5,24 +5,27 @@ RSpec.describe "AccessTokens", type: :request do
     context 'when invalid request' do
       let(:error) do
         {
-          "status": "401",
-          "source": { "pointer": "/code" },
-          "title":  "Authentication code is invalid",
-          "detail": "Yout must provide valid code in order to exchange it for token"
+          "status" => "401",
+          "source" => { "pointer" => "/code" },
+          "title" =>  "Authentication code is invalid",
+          "detail" => "You must provide valid code in order to exchange it for token"
         }
       end
+
+      subject { post :create }
+      
       it 'should return 401 status code' do
-        post :create
+        subject
         expect(response).to have_http_status(401)
       end
 
       it 'should return proper error body' do
-        post :create
+        subject
         expect(json['errors']).to include(error)
       end
     end
 
-    context 'when invalid request' do
+    context 'when success request' do
       
     end
   end

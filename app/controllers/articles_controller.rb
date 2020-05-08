@@ -10,4 +10,21 @@ class ArticlesController < ApplicationController
   def show
     render json: Article.find(params[:id])
   end
+
+  def create
+    article = Article.new(article_params)
+    if article.valid?
+      # TODO
+    else
+      render json: article, adapter: :json_api,
+      serializer: ActiveModel::Serializer::ErrorSerializer,
+      status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def article_params
+    ActionController::Parameters.new
+  end
 end

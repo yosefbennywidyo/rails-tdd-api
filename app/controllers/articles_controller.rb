@@ -21,6 +21,16 @@ class ArticlesController < ApplicationController
     status: :unprocessable_entity
   end
 
+  def update
+    article = Article.find(params[:id])
+    article.update!(article_params)
+    render json: article, status: :ok
+  rescue
+    render json: article, adapter: :json_api,
+    serializer: ErrorSerializer,
+    status: :unprocessable_entity
+  end
+
   private
 
   def article_params

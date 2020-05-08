@@ -127,6 +127,7 @@ describe ArticlesController do
             }
           }
         end
+
         subject { post :create, params: valid_attributes }
 
         it 'should have 201 status code' do
@@ -136,7 +137,14 @@ describe ArticlesController do
 
         it 'should have proper json body' do
           subject
-          expect(json_data['attributes']).to include(valid_attributes['data']['attributes'])
+          #pp json_data['attributes']
+          expect(json_data['attributes']).to include(
+            {
+              'title' => 'Awesome article',
+              'content' => 'Super content',
+              'slug' => 'awesome-article'
+            }
+          )
         end
 
         it 'should create the article' do

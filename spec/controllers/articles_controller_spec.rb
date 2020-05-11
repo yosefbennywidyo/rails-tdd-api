@@ -304,7 +304,7 @@ describe ArticlesController do
 
         it 'should destroy the article' do
           article
-          expect{ subject }.to change{ user.article.count }.by(-1)
+          expect{ subject }.to change{ user.articles.count }.by(-1)
         end
       end
     end

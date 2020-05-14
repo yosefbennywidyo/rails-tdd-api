@@ -41,7 +41,7 @@ describe CommentsController do
       subject
       relationships = json_data.first['relationships']
       expect(relationships['article']['data']['id']).to eq(article.id.to_s)
-      expect(relationships['user']['data']['id']).to eq(user.id)
+      expect(relationships['user']['data']['id']).to eq(user.id.to_s)
     end
   end
 

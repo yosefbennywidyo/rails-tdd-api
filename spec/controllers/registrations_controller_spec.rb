@@ -65,7 +65,7 @@ describe RegistrationsController do
       it 'should return proper json' do
         subject
         expect(json_data['attributes']).to eq({
-          'login' => 'jsmith',
+          'login' => 'fybwid',
           'avatar-url' => nil,
           'url' => nil,
           'name' => nil
